@@ -1,4 +1,6 @@
-from matrix import Matrix, SquareMatrix
+from matrix import Matrix, SquareMatrix, AugmentedMatrix
+from vector import Vector
+from linear_system import LinearSystem
 
 a = Matrix([[1, 1],
             [1, 1]])
@@ -22,3 +24,10 @@ h = Matrix([[1, 2, 3, 4],
             [2, 3, 4, 5],
             [3, 4, 5, 6],
             [4, 5, 6, 7]])
+
+
+b = Vector('1, 2, 3')
+C = Matrix('2, 1, 3; 5, 2, 4; 1, 0, 3')
+s = LinearSystem(C, b)
+s.augment()
+A = s.augmented_matrix
