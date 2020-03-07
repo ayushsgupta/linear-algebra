@@ -3,7 +3,8 @@ from copy import deepcopy
 from math import sqrt, acos, atan2, pi
 from matrix import Matrix
 
-levi_civita = lambda i, j, k: 1 if [i, j, k] in [[1, 2, 3], [2, 3, 1], [3, 1, 2]] else -1 if [i, j, k] in [[1, 3, 2], [2, 1, 3], [3, 2, 1]] else 0
+levi_civita = lambda i, j, k: 1 if [i, j, k] in [[1, 2, 3], [2, 3, 1], [3, 1, 2]] \
+                                else -1 if [i, j, k] in [[1, 3, 2], [2, 1, 3], [3, 2, 1]] else 0
 
 class Vector:
 
