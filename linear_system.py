@@ -1,3 +1,4 @@
+from copy import deepcopy
 from matrix import Matrix, SquareMatrix, AugmentedMatrix
 from vector import Vector
 
@@ -6,10 +7,10 @@ class LinearSystem:
 
     def __init__(self, coefficients, knowns):
         assert isinstance(coefficients, Matrix), 'Coefficients must be a Matrix'
-        self._coefficients = coefficients
+        self._coefficients = deepcopy(coefficients)
         assert isinstance(knowns, Vector), 'Knowns must be a Vector'
         assert coefficients.rows == knowns.dim, 'Improper linear system'
-        self._knowns = knowns
+        self._knowns = deepcopy(knowns)
         self._augmented, self._is_augmented = self._coefficients, False
 
     @property

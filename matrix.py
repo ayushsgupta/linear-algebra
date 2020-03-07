@@ -1,6 +1,5 @@
 from operator import add, sub
 from copy import deepcopy
-from vector import Vector
 
 kronecker_delta = lambda i, j: 1 if i == j else 0
 
@@ -157,22 +156,22 @@ class Matrix:
                 ret[i][j] = self.get_0(j, i)
         return self.__class__(ret)
 
-    def Compose(matrix_list, matrix_type=Matrix):
+    def Compose(matrix_list):
         assert isinstance(matrix_list, list) and len(matrix_list) >= 2 and \
                all([isinstance(elem, Matrix) for elem in matrix_list]), 'Invalid list of matrices'
         composed = matrix_list.pop(0) * matrix_list.pop(0)
         while matrix_list:
             composed *= matrix_list.pop(0)
-        return matrix_type(composed.matrix)
+        return Matrix(composed.matrix)
 
-    def apply_transformation(self, vector):
-        assert isinstance(vector, Vector), 'Must transform a Vector'
-        assert self.columns == vector.dim, 'Invalid matrix multiplication with vector'
-        t = Vector([0 for _ in range(self.rows)])
-        for i in range(t.dim):
-            val = sum([self.get_0(i, j) * vector.get_0(j) for j in range(vector.dim)])
-            t.setval_0(val, i)
-        return t
+    # def apply_transformation(self, vector):
+    #     assert isinstance(vector, Vector), 'Must transform a Vector'
+    #     assert self.columns == vector.dim, 'Invalid matrix multiplication with vector'
+    #     t = Vector([0 for _ in range(self.rows)])
+    #     for i in range(t.dim):
+    #         val = sum([self.get_0(i, j) * vector.get_0(j) for j in range(vector.dim)])
+    #         t.setval_0(val, i)
+    #     return t
 
 class SquareMatrix(Matrix):
 
